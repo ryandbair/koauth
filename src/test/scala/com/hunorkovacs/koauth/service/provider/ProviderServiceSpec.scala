@@ -5,7 +5,7 @@ import com.hunorkovacs.koauth.service.Arithmetics.urlEncode
 import com.hunorkovacs.koauth.service.DefaultTokenGenerator
 import com.hunorkovacs.koauth.service.provider.VerifierObject._
 import com.hunorkovacs.koauth.service.provider.persistence.Persistence
-import org.mockito.Matchers
+import org.mockito.{ArgumentMatchers => Matchers}
 import org.specs2.mock._
 import org.specs2.mutable.Specification
 
