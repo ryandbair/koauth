@@ -6,9 +6,9 @@ name := """koauth"""
 
 version := "2.0.1-SNAPSHOT"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.13.1"
 
-crossScalaVersions := Seq("2.10.4", "2.11.8")
+crossScalaVersions := Seq("2.11.12", "2.12.10")
 
 resolvers ++= Seq(
   "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/",

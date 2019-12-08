@@ -44,9 +44,9 @@ class ProviderServiceSpec extends Specification with Mockito {
             a(1) match { case s: String => token = s }
             a(2) match { case s: String => secret = urlEncode(s) }
         }
-        successful(Unit)
+        successful()
       }
-      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq("")) returns successful(Unit)
+      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq("")) returns successful()
       verifier.verifyForRequestToken(request) returns successful(VerificationOk)
 
       val response = Await.result(service.requestToken(request), 1.0 seconds)
@@ -128,10 +128,10 @@ class ProviderServiceSpec extends Specification with Mockito {
             a(1) match { case s: String => accessToken = s }
             a(2) match { case s: String => secret = s }
         }
-        successful(Unit)
+        successful()
       }
-      pers.deleteRequestToken(Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful(Unit)
-      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful(Unit)
+      pers.deleteRequestToken(Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful()
+      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful()
 
       val response = Await.result(service.accessToken(request), 1.0 seconds)
 
@@ -235,7 +235,7 @@ class ProviderServiceSpec extends Specification with Mockito {
       val request = KoauthRequest("", "", header, List.empty, List.empty)
       verifier.verifyForOauthenticate(request) returns successful(VerificationOk)
       pers.getUsername(ConsumerKey, RequestToken) returns successful(Some(Username))
-      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful(Unit)
+      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful()
 
       val response = Await.result(service.oauthenticate(request), 1.0 seconds)
 
@@ -268,7 +268,7 @@ class ProviderServiceSpec extends Specification with Mockito {
       val request = KoauthRequest("", "", header, List.empty, List.empty)
       verifier.verifyForOauthenticate(request) returns successful(VerificationOk)
       pers.getUsername(ConsumerKey, RequestToken) returns successful(None)
-      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful(Unit)
+      pers.persistNonce(anyString, Matchers.eq(ConsumerKey), Matchers.eq(RequestToken)) returns successful()
 
       val response = Await.result(service.oauthenticate(request), 1.0 seconds)
 
